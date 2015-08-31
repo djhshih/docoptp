@@ -25,6 +25,12 @@ comment_char = '#'
 boundary_idx = len(sys.argv)
 script = None
 
+
+def sanitized(x):
+    """Santize Bash variable value."""
+    return x.replace('"', '\\"').replace("$", "\\$")
+
+
 # only arguments should be printed to stdout
 # redirect all other output to stderr
 stdout = sys.stdout
@@ -98,15 +104,15 @@ sys.stdout = stdout
 for arg, value in args.items():
     arg = arg.strip('-<>')
     if isinstance(value, list):
-        values = ["'{0}'".format(x) for x in value]
-        print("{0}=( {1} )".format(arg, ' '.join(values)))
+        values = ['"{0}"'.format(sanitized(x)) for x in value]
+        print('{0}=( {1} )'.format(arg, ' '.join(values)))
     elif isinstance(value, bool):
         if value:
-            print("{0}=true".format(arg))
+            print('{0}=true'.format(arg))
         else:
-            print("{0}=false".format(arg))
+            print('{0}=false'.format(arg))
     elif isinstance(value, int):
-        print("{0}={1}".format(arg, value))
+        print('{0}={1}'.format(arg, value))
     else:
-        print("{0}='{1}'".format(arg, value))
+        print('{0}="{1}"'.format(arg, sanitized(value)))
 
