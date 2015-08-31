@@ -1,14 +1,15 @@
 # docoptp
 
-Bash interface for the docopt library. `docoptp` prints `docopt` parsing results to stdout so that Bash variables are defined automatically based on command line arguments.
+Bash interface for the docopt Python library. `docoptp` prints `docopt` parsing results to stdout so that Bash variables are defined automatically based on command line arguments.
 
 ## Requirement
 
 * python >= 2.5 or python >= 3.2
+* docopt
 
 ## Install
 
-    DESTDIR=/usr/local ./install.sh
+    ./install.sh
 
 ## Usage
 
