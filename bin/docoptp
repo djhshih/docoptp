@@ -103,6 +103,7 @@ args = docopt(doc, argv=sys.argv[(boundary_idx+1):])
 sys.stdout = stdout
 for arg, value in args.items():
     arg = arg.strip('-<>')
+    if value is None: continue
     if isinstance(value, list):
         values = ['"{0}"'.format(sanitized(x)) for x in value]
         print('{0}=( {1} )'.format(arg, ' '.join(values)))
